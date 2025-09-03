@@ -1,0 +1,20 @@
+name: deploy Ecomapp
+on:
+ push:
+   branches: [ "master"]
+jobs:
+ build:
+  runs-on: ubuntu-latest
+  steps:
+ -user: actions/checkout@v4
+ -name: Setup jdk 17
+ -user: actions/setup-java@v4 
+  with:
+   java-version: '17'
+   distubition: 'temurin'
+   cache: maven
+ -name: Bulid with maven
+  run:mvn -B package --file pom.xml
+  
+  
+  
